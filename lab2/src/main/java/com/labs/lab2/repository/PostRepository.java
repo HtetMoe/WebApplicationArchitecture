@@ -1,5 +1,5 @@
-package com.labs.lab1.repository;
-import com.labs.lab1.entity.Post;
+package com.labs.lab2.repository;
+import com.labs.lab2.entity.Post;
 
 import java.util.List;
 
@@ -12,5 +12,9 @@ public interface PostRepository {
 
     void delete(long id);
 
+    void update(long id, Post post);
+
     List<Post> findByAuthor(String author);
+
+    List<Post> findByAuthorName(String author);
 }
