@@ -1,9 +1,9 @@
-package com.labs.lab2.service;
+package com.labs.lab3.service.users_service;
 
-import com.labs.lab2.entity.User;
-import com.labs.lab2.entity.dto.PostDTO;
-import com.labs.lab2.entity.dto.UserDto;
-import com.labs.lab2.repository.UserRepository;
+import com.labs.lab3.entity.User;
+import com.labs.lab3.repository.users_repo.UserRepository;
+import com.labs.lab3.entity.dto.PostDTO;
+import com.labs.lab3.entity.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,23 +17,23 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<UserDto> getUsers() {
+    public List<UserDTO> getUsers() {
         return userRepository
                 .findAll().stream()
-                .map(user -> modelMapper.map(user, UserDto.class))
+                .map(user -> modelMapper.map(user, UserDTO.class))
                 .toList();
     }
 
     @Override
-    public UserDto findById(long id) {
+    public UserDTO findById(long id) {
         return userRepository
                 .findById(id)
-                .map(user -> modelMapper.map(user, UserDto.class))
+                .map(user -> modelMapper.map(user, UserDTO.class))
                 .orElse(null);
     }
 
     @Override
-    public void save(UserDto userDto) {
+    public void save(UserDTO userDto) {
         userRepository.save(modelMapper.map(userDto, User.class));
     }
 
@@ -49,15 +49,22 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User not found!");
         else
             return user.getPosts()
-                .stream()
-                .map(post -> modelMapper.map(post, PostDTO.class))
+                    .stream()
+                    .map(post -> modelMapper.map(post, PostDTO.class))
+                    .toList();
+    }
+
+    @Override
+    public List<UserDTO> getUsersWithMoreThanOnePost() {
+        return userRepository.findUsersWithMoreThanPosts(1)
+                .stream().map(user -> modelMapper.map(user, UserDTO.class))
                 .toList();
     }
 
     @Override
-    public List<UserDto> getUsersWithMoreThanOnePost() {
-        return userRepository.findByPostsSizeGreaterThan(1)
-                .stream().map(user -> modelMapper.map(user, UserDto.class))
+    public List<UserDTO> findUsersByPostTitle(String title) {
+        return userRepository.findUsersByPostTitle(title)
+                .stream().map(user -> modelMapper.map(user, UserDTO.class))
                 .toList();
     }
 }

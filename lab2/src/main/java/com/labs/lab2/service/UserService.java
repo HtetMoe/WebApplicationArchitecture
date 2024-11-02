@@ -1,5 +1,5 @@
 package com.labs.lab2.service;
-import com.labs.lab2.entity.Post;
+
 import com.labs.lab2.entity.dto.PostDTO;
 import com.labs.lab2.entity.dto.UserDto;
 import java.util.List;
@@ -15,5 +15,5 @@ public interface UserService {
 
     List<PostDTO> getPostsByUserId(long userId);
 
-    //List<UserDto> getUsersWithMoreThanOnePost();
+    List<UserDto> getUsersWithMoreThanOnePost();
 }

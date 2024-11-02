@@ -1,5 +1,6 @@
 package com.labs.lab2.controller;
 
+import com.labs.lab2.entity.User;
 import com.labs.lab2.entity.dto.PostDTO;
 import com.labs.lab2.entity.dto.UserDto;
 import com.labs.lab2.service.UserService;
@@ -42,15 +43,15 @@ public class UserController {
         return STR."User with id \{id} was deleted";
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/with-posts")
-//    public List<UserDto> getUsersWithPosts(){
-//        return userService.getUsersWithMoreThanOnePost();
-//    }
-
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}/posts")
-    public List<PostDTO> getUsersWithPosts(@PathVariable Long id){
+    public List<PostDTO> getPostsByUserId(@PathVariable Long id){
         return userService.getPostsByUserId(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/usersWithMultiplePosts")
+    public List<UserDto> getUsersWithMoreThanOnePost(){
+        return userService.getUsersWithMoreThanOnePost();
     }
 }
