@@ -1,4 +1,4 @@
-package com.labs.lab3.entity;
+package com.labs.lab4.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
