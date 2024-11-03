@@ -1,4 +1,5 @@
 package com.labs.lab4.service.users_service;
+import com.labs.lab4.aspect.ExecutionTime;
 import com.labs.lab4.entity.User;
 import com.labs.lab4.entity.dto.PostDTO;
 import com.labs.lab4.entity.dto.UserDTO;
@@ -8,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @AllArgsConstructor
 @Service
@@ -24,11 +26,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @ExecutionTime // => apply the ExecutionTime annotation
     public UserDTO findById(long id) {
-        return userRepository
+        UserDTO userDTO = userRepository
                 .findById(id)
                 .map(user -> modelMapper.map(user, UserDTO.class))
                 .orElse(null);
+        if (userDTO == null)
+            throw new RuntimeException("User not found!");
+
+        return userDTO;
     }
 
     @Override
