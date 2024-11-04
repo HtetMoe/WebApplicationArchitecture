@@ -1,8 +1,9 @@
-package com.labs.lab4.service.posts_service;
+package com.labs.lab4.service.impl;
 import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.Post;
 import com.labs.lab4.exception.ResourceNotFoundException;
 import com.labs.lab4.repository.PostRepository;
+import com.labs.lab4.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

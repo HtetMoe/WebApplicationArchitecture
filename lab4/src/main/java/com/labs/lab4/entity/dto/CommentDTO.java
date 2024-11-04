@@ -7,5 +7,6 @@ import lombok.*;
 @Setter
 @RequiredArgsConstructor
 public class CommentDTO {
-    String name;
+    private Long id;
+    private String name;
 }

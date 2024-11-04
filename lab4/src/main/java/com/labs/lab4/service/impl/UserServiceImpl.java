@@ -1,10 +1,11 @@
-package com.labs.lab4.service.users_service;
-import com.labs.lab4.aspect.ExecutionTime;
+package com.labs.lab4.service.impl;
+import com.labs.lab4.logging.ExecutionTime;
 import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.Post;
 import com.labs.lab4.entity.User;
 import com.labs.lab4.exception.ResourceNotFoundException;
 import com.labs.lab4.repository.UserRepository;
+import com.labs.lab4.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
     @ExecutionTime // => apply the ExecutionTime annotation
+    @Override
     public User findById(long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(STR."User with id \{id} not found"));

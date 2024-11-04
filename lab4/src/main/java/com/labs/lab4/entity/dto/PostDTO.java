@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class PostDTO {
     @NotEmpty(message = "Title is required.")
-    long id;
-    String title;
-    String content;
-    String author;
+    private Long id;
+    private String title;
+    private String content;
+    private String author;
 }

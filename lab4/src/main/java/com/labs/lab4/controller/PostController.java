@@ -3,7 +3,7 @@ import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.Post;
 import com.labs.lab4.entity.dto.CommentDTO;
 import com.labs.lab4.entity.dto.PostDTO;
-import com.labs.lab4.service.posts_service.PostService;
+import com.labs.lab4.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.labs.lab4.controller;
 import com.labs.lab4.entity.dto.CommentDTO;
-import com.labs.lab4.service.comment_service.CommentService;
+import com.labs.lab4.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;

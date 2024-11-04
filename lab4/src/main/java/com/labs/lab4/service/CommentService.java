@@ -1,4 +1,4 @@
-package com.labs.lab4.service.comment_service;
+package com.labs.lab4.service;
 import com.labs.lab4.entity.Comment;
 import java.util.List;
 

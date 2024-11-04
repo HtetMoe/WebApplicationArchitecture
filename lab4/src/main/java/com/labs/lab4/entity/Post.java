@@ -13,12 +13,12 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String title;
-    String content;
-    String author;
+    private long id;
+    private String title;
+    private String content;
+    private String author;
 
-    @OneToMany(cascade = CascadeType.ALL) //, fetch = FetchType.EAGER
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
-    List<Comment> comments = new ArrayList<>(); // initialize, not to be null and can add comment
+    private List<Comment> comments = new ArrayList<>(); // initialize, not to be null and can add comment
 }

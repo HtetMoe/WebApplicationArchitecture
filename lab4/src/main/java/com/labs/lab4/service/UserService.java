@@ -1,4 +1,4 @@
-package com.labs.lab4.service.users_service;
+package com.labs.lab4.service;
 import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.Post;
 import com.labs.lab4.entity.User;

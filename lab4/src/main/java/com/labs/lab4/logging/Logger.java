@@ -1,9 +1,6 @@
-package com.labs.lab4.entity.aspect;
+package com.labs.lab4.logging;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "logs")
 public class Logger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    long transaction_id;
-    LocalDateTime dateTime;
-    String principle;
-    String operation;
+    private Long transactionID;
+    private LocalDateTime dateTime;
+    private Long executionTime;
+    private String principle = "staticUser"; //fake static user
+    private String operation;
 }

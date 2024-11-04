@@ -4,7 +4,7 @@ import com.labs.lab4.entity.User;
 import com.labs.lab4.entity.dto.CommentDTO;
 import com.labs.lab4.entity.dto.PostDTO;
 import com.labs.lab4.entity.dto.UserDTO;
-import com.labs.lab4.service.users_service.UserService;
+import com.labs.lab4.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

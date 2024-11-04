@@ -1,6 +1,7 @@
-package com.labs.lab4.service.comment_service;
+package com.labs.lab4.service.impl;
 import com.labs.lab4.entity.Comment;
 import com.labs.lab4.repository.CommentRepository;
+import com.labs.lab4.service.CommentService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

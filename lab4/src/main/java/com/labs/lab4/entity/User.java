@@ -16,10 +16,10 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String name;
+    private Long id;
+    private String name;
 
-    @OneToMany(cascade = CascadeType.ALL) // Manage the lifecycle of posts
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    List<Post> posts;
+    private List<Post> posts;
 }

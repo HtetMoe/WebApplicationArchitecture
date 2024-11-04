@@ -18,6 +18,6 @@ import lombok.Setter;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String name;
+    private Long id;
+    private String name;
 }

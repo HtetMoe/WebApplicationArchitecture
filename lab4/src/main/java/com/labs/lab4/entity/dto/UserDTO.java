@@ -1,9 +1,9 @@
 package com.labs.lab4.entity.dto;
-import com.labs.lab4.entity.dto.PostDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.List;
 
 @Getter
@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    String name;
-    List<PostDTO> posts;
+    private Long id;
+    private String name;
+    private List<PostDTO> posts;
 }
