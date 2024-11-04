@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="lab3" />
+        <module name="Student" />
         <module name="lab4" />
         <module name="lab1" />
         <module name="lab2" />
@@ -18,6 +19,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="--enable-preview" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Student" options="-parameters" />
       <module name="lab1" options="-parameters" />
       <module name="lab2" options="-parameters" />
       <module name="lab3" options="-parameters" />

@@ -30,17 +30,12 @@ public class LogAspect {
         long execTime = start - end;
         Object result = joinPoint.proceed();
 
-        //log operation to 'logs' table
-        Logger logEntry = new Logger();
-        logEntry.setDateTime(LocalDateTime.now());
-        logEntry.setOperation(STR."\{joinPoint.getSignature().getName()} executed in \{execTime} ms");
-
-        System.out.println(STR."Execution time of \{joinPoint.getSignature()} is \{end - start} ms");
+        System.out.println(STR."Execution time of \{joinPoint.getSignature()} is \{execTime} ms");
         return result;
     }
 
     //log the exceptions
-    @AfterThrowing(pointcut = "execution(* com.labs.lab4.service.*.*(..))", throwing = "exception")
+    @AfterThrowing(pointcut = "execution(* com.labs.lab4.service..*(..))", throwing = "exception")
     public void logException(JoinPoint joinPoint, Throwable exception) {
 
         //calculate execution time
@@ -57,8 +52,8 @@ public class LogAspect {
         System.out.println(STR."Log Exception for method: \{joinPoint.getSignature().getName()}");
     }
 
-    //log the operations
-    @Before("execution(* com.labs.lab4.service.*.*(..))") // belong to all methods inside it
+    //log all operations
+    @Before("execution(* com.labs.lab4.service..*(..))") // belong to all methods inside it
     public void logOperation(JoinPoint joinPoint) {
         //calculate execution time
         long start = System.currentTimeMillis();
