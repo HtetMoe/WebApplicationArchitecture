@@ -1,24 +1,25 @@
 package com.labs.lab4.service.posts_service;
-import com.labs.lab4.entity.dto.CommentDTO;
-import com.labs.lab4.entity.dto.PostDTO;
+import com.labs.lab4.entity.Comment;
+import com.labs.lab4.entity.Post;
 import java.util.List;
 
 public interface PostService {
-    List<PostDTO> findAll();
 
-    PostDTO findById(long id);
+    List<Post> findAll();
 
-    void save(PostDTO post);
+    Post findById(long id);
+
+    void save(Post post);
 
     void delete(long id);
 
-    void update(long id, PostDTO post);
+    void update(long id, Post post);
 
-    List<PostDTO> findByAuthor(String author);
+    List<Post> filterPostsByAuthor(String author);
 
-    List<PostDTO> findByAuthorName(String author);
+    List<Post> searchPostsByAuthorNameContaining(String author);
 
-    void addCommentToPost(long postId, CommentDTO comment);
+    void addCommentToPost(long postId, Comment comment);
 
-    List<PostDTO> findByTitle(String title);
+    List<Post> findPostsByTitle(String title);
 }

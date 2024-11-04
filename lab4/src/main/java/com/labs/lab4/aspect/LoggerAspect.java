@@ -1,9 +1,8 @@
 package com.labs.lab4.aspect;
-
 import com.labs.lab4.entity.aspect.ExceptionLog;
 import com.labs.lab4.entity.aspect.Logger;
-import com.labs.lab4.repository.aspect_repo.ExceptionLogRepository;
-import com.labs.lab4.repository.aspect_repo.LoggerRepository;
+import com.labs.lab4.repository.aspects.ExceptionLogRepository;
+import com.labs.lab4.repository.aspects.LoggerRepository;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -13,7 +12,6 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Aspect
 @Component

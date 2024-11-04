@@ -1,20 +1,24 @@
 package com.labs.lab4.service.users_service;
-import com.labs.lab4.entity.dto.PostDTO;
-import com.labs.lab4.entity.dto.UserDTO;
+import com.labs.lab4.entity.Comment;
+import com.labs.lab4.entity.Post;
+import com.labs.lab4.entity.User;
+
 import java.util.List;
 
 public interface UserService {
-    List<UserDTO> getUsers();
+    List<User> getUsers();
 
-    UserDTO findById(long id);
+    User findById(long id);
 
-    void save(UserDTO userDto);
+    void save(User user);
 
     void delete(long id);
 
-    List<PostDTO> getPostsByUserId(long userId);
+    List<Post> getPostsByUserId(long userId);
 
-    List<UserDTO> getUsersWithMoreThanOnePost();
+    List<User> getUsersWithMoreThanNPosts(int postCount);
 
-    List<UserDTO> findUsersByPostTitle(String title);
+    List<User> findUsersByPostTitle(String title);
+
+    Comment findCommentByUserIdAndPostIdAndCommentId(long userId, long postId, long commentId);
 }

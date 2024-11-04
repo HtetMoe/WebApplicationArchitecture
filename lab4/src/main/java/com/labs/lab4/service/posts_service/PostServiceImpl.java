@@ -1,82 +1,68 @@
 package com.labs.lab4.service.posts_service;
 import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.Post;
-import com.labs.lab4.entity.dto.CommentDTO;
-import com.labs.lab4.entity.dto.PostDTO;
-import com.labs.lab4.repository.posts_repo.PostRepository;
-import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
+import com.labs.lab4.exception.ResourceNotFoundException;
+import com.labs.lab4.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 import static java.lang.StringTemplate.STR;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class PostServiceImpl implements PostService {
+
     private final PostRepository postRepository;
-    private final ModelMapper modelMapper;
 
     @Override
-    public List<PostDTO> findAll() {
-        return postRepository.findAll().stream().map(post -> modelMapper.map(post, PostDTO.class)).toList();
+    public List<Post> findAll() {
+        return postRepository.findAll();
     }
 
     @Override
-    public PostDTO findById(long id) {
-        return modelMapper.map(postRepository.findById(id), PostDTO.class);
+    public Post findById(long id) {
+        return postRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(STR."Post not found with id \{id}"));
     }
 
     @Override
-    public void save(PostDTO post) {
-        postRepository.save(modelMapper.map(post, Post.class));
+    public void save(Post post) {
+        postRepository.save(post);
     }
 
     @Override
     public void delete(long id) {
-        Post post = postRepository.findById(id);
-        if (post == null)
-            throw new RuntimeException(STR."Post id :\{id} not found!");
-        postRepository.delete(id);
+        postRepository.deleteById(id);
     }
 
     @Override
-    public void update(long id, PostDTO post) {
-        postRepository.update(id, modelMapper.map(post, Post.class));
+    public void update(long id, Post post) {
+       this.findById(id);
+        postRepository.save(post);
     }
 
+    //posts by author
     @Override
-    public List<PostDTO> findByAuthor(String author) {
-        return postRepository.findByAuthor(author)
-                .stream()
-                .map(post -> modelMapper.map(post, PostDTO.class)).toList();
-
+    public List<Post> filterPostsByAuthor(String author) {
+        return postRepository.findByAuthor(author);
     }
 
+
     @Override
-    public List<PostDTO> findByAuthorName(String author) {
-        return postRepository.findByAuthorName(author)
-                .stream()
-                .map(post -> modelMapper.map(post, PostDTO.class)).toList();
+    public List<Post> searchPostsByAuthorNameContaining(String text) {
+        return postRepository.findByAuthorContaining(text);
     }
 
     //5. Make it possible to add a comment that will be associated with its post.
     @Override
-    public void addCommentToPost(long postId, CommentDTO comment) {
-        Post post = postRepository.findById(postId);
-        if (post == null)
-            throw new RuntimeException("Post not found!");
-        else
-            post.getComments().add(modelMapper.map(comment, Comment.class));
+    public void addCommentToPost(long postId, Comment comment) {
+        Post post = this.findById(postId);
+        post.getComments().add(comment);
+        postRepository.save(post);
     }
 
     @Override
-    public List<PostDTO> findByTitle(String title) {
-        return postRepository.findByTitle(title)
-                .stream().map(post -> modelMapper.map(post, PostDTO.class))
-                .toList();
+    public List<Post> findPostsByTitle(String title) {
+        return postRepository.findByTitle(title);
     }
-
-
 }

@@ -1,4 +1,5 @@
-package com.labs.lab4.repository.users_repo;
+package com.labs.lab4.repository;
+import com.labs.lab4.entity.Comment;
 import com.labs.lab4.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,9 +12,9 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u from User u where SIZE(u.posts) > :postCount")
-    List<User> findUsersWithMoreThanPosts(@Param("postCount") int postCount);
+    List<User> findUsersWithMoreThanNPosts(@Param("postCount") int postCount);
 
-    //Lab 3 : 9. Make a query that will find the users that made posts within a given title
-    @Query("select distinct u from User u join u.posts p where p.title = :title")
+    //Lab 3 => 9. Make a query that will find the users that made posts within a given title
+    @Query("select u from User u join u.posts p where p.title = :title")
     List<User> findUsersByPostTitle(@Param("title") String title);
 }

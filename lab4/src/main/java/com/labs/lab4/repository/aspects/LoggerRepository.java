@@ -1,4 +1,4 @@
-package com.labs.lab4.repository.aspect_repo;
+package com.labs.lab4.repository.aspects;
 
 import com.labs.lab4.entity.aspect.Logger;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,11 +1,14 @@
 package com.labs.lab4.service.comment_service;
-import com.labs.lab4.entity.dto.CommentDTO;
+import com.labs.lab4.entity.Comment;
 import java.util.List;
 
 public interface CommentService {
-    List<CommentDTO> getAllComments();
+    List<Comment> getAllComments();
 
-    CommentDTO getCommentById(Long id);
+    Comment getCommentById(Long id);
 
-    void createComment(CommentDTO commentDTO);
+    void createComment(Comment comment);
+
+    void addComment(Comment comment);
+
 }
