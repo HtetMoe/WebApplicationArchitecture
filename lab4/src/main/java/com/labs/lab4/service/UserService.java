@@ -20,5 +20,5 @@ public interface UserService {
 
     List<User> findUsersByPostTitle(String title);
 
-    Comment findCommentByUserIdAndPostIdAndCommentId(long userId, long postId, long commentId);
+    Comment findCommentByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
 }

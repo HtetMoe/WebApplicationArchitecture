@@ -55,15 +55,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Comment findCommentByUserIdAndPostIdAndCommentId(long userId, long postId, long commentId) {
-        User user = this.findById(userId);
-
-        Post post = user.getPosts()
-                .stream().filter(post1 -> post1.getId() == postId)
-                .findFirst().orElseThrow(() -> new ResourceNotFoundException("Post not found!"));
-
-        return post.getComments()
-                .stream().filter(comment -> comment.getId() == commentId)
-                .findFirst().orElseThrow(() -> new ResourceNotFoundException("Comment not found!"));
+    public Comment findCommentByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId) {
+//        User user = this.findById(userId);
+//
+//        Post post = user.getPosts()
+//                .stream().filter(post1 -> post1.getId() == postId)
+//                .findFirst().orElseThrow(() -> new ResourceNotFoundException("Post not found!"));
+//
+//        return post.getComments()
+//                .stream().filter(comment -> comment.getId() == commentId)
+//                .findFirst().orElseThrow(() -> new ResourceNotFoundException("Comment not found!"));
+        return userRepository.findCommentByUserIdAndPostIdAndCommentId(userId, postId, commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found!"));
     }
 }

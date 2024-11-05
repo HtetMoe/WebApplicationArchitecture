@@ -4,6 +4,7 @@ import com.labs.lab4.entity.User;
 import com.labs.lab4.entity.dto.CommentDTO;
 import com.labs.lab4.entity.dto.PostDTO;
 import com.labs.lab4.entity.dto.UserDTO;
+import com.labs.lab4.service.CommentService;
 import com.labs.lab4.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final CommentService commentService;
     private final ModelMapper modelMapper;
 
     //get all users
@@ -82,9 +84,9 @@ public class UserController {
     //(i.e : retrieve a specific comment for a specific post by a specific user)
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{userId}/posts/{postId}/comments/{commentId}")
-    public CommentDTO getCommentByUserPostAndCommentId(@PathVariable long userId,
-                                                       @PathVariable long postID,
-                                                       @PathVariable long commentId) {
+    public CommentDTO getCommentByUserPostAndCommentId(@PathVariable(value = "userId") Long userId,
+                                                       @PathVariable(value = "postId") Long postID,
+                                                       @PathVariable(value = "commentId") Long commentId) {
         Comment comment = userService.findCommentByUserIdAndPostIdAndCommentId(userId, postID, commentId);
         return modelMapper.map(comment, CommentDTO.class);
     }

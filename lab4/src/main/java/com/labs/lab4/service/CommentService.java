@@ -6,9 +6,4 @@ public interface CommentService {
     List<Comment> getAllComments();
 
     Comment getCommentById(Long id);
-
-    void createComment(Comment comment);
-
-    void addComment(Comment comment);
-
 }

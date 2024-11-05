@@ -1,5 +1,7 @@
 package com.labs.lab4.service.impl;
 import com.labs.lab4.entity.Comment;
+import com.labs.lab4.entity.Post;
+import com.labs.lab4.exception.ResourceNotFoundException;
 import com.labs.lab4.repository.CommentRepository;
 import com.labs.lab4.service.CommentService;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,15 +23,5 @@ public class CommentServiceImpl implements CommentService {
     public Comment getCommentById(Long id) {
         return commentRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Comment not found"));
-    }
-
-    @Override
-    public void createComment(Comment comment) {
-        commentRepository.save(comment);
-    }
-
-    @Override
-    public void addComment(Comment comment) {
-        commentRepository.save(comment);
     }
 }
