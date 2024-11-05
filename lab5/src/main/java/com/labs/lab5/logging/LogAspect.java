@@ -1,15 +1,12 @@
-package com.labs.lab4.logging;
+package com.labs.lab5.logging;
 
-import com.labs.lab4.exception.ExceptionLog;
-import com.labs.lab4.repository.aspects.ExceptionLogRepository;
-import com.labs.lab4.repository.aspects.LoggerRepository;
+import com.labs.lab5.exception.ExceptionLog;
+import com.labs.lab5.repository.aspects.ExceptionLogRepository;
+import com.labs.lab5.repository.aspects.LoggerRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
