@@ -74,7 +74,7 @@ public class PostController {
 
     //Lab3 : 5. Make it possible to add a comment that will be associated with its post.
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/{postId}/addComment")
+    @PostMapping("/{postId}/comments")
     public void addComment(@PathVariable long postId, @RequestBody CommentDTO commentDTO) {
         postService.addCommentToPost(postId, modelMapper.map(commentDTO, Comment.class));
     }

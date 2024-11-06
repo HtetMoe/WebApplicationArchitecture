@@ -1,9 +1,13 @@
 package com.labs.lab5.service.impl;
 import com.labs.lab5.entity.Comment;
+import com.labs.lab5.entity.dto.CommentDTO;
 import com.labs.lab5.repository.CommentRepository;
 import com.labs.lab5.service.CommentService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +16,17 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
+    private final ModelMapper modelMapper;
+
+//    @Override
+//    public Page<CommentDTO> getAllComments() {
+//        return commentRepository.findAll();
+//    }
 
     @Override
-    public List<Comment> getAllComments() {
-        return commentRepository.findAll();
+    public Page<CommentDTO> getAllComments(Pageable pageable) {
+        return commentRepository.findAll(pageable)
+                .map(comment -> modelMapper.map(comment, CommentDTO.class));
     }
 
     @Override

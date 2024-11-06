@@ -6,10 +6,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 // JPQL query - query language defined by JPA
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByUsername(String username);
 
     @Query("select u from User u where SIZE(u.posts) > :postCount")
     List<User> findUsersWithMoreThanNPosts(@Param("postCount") int postCount);
