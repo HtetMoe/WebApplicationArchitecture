@@ -34,7 +34,7 @@ public class UserController {
     // get user by id
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public UserDTO getUserById(@PathVariable Long id) {
+        public UserDTO getUserById(@PathVariable Long id) {
         return modelMapper.map(userService.findById(id), UserDTO.class);
     }
 

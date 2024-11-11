@@ -40,7 +40,7 @@ public class PostController {
         postService.save(modelMapper.map(postDTO, Post.class));
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     public void updatePost(@PathVariable long id, @RequestBody PostDTO postDTO) {
         Post post = modelMapper.map(postDTO, Post.class);
