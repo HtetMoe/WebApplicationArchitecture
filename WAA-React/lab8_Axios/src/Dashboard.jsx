@@ -1,15 +1,23 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Post from './Post/Post';
 import PostDetails from './Post/PostDetails';
 import axios from 'axios';
+import { usePost } from './PostContext'; 
 
 const Dashboard = () => {
+  const { selectedPostId, setSelectedPostId } = usePost(); // access to context
+
   const [posts, setPosts] = useState([])
   const [selectedPost, setSelectedPost] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
-  const [newAuthor, setNewAuthor] = useState("");
+  
+  // const [newTitle, setNewTitle] = useState("");
+  // const [newAuthor, setNewAuthor] = useState("");
+
+  //useRef()
+  const titleRef = useRef();
+  const authorRef = useRef();
 
   //fetch posts when the component mounts
   useEffect(() => {
@@ -20,12 +28,12 @@ const Dashboard = () => {
 
   //delete a post
   const deletePost = () => {
-    if (selectedPost?.id) {
-      var id = selectedPost.id
-      console.log("Deleting post with ID:", id);
-      axios.delete(`http://localhost:8080/api/v1/posts/${id}`)
+    console.log("id", selectedPostId)
+    if (selectedPostId) {
+      console.log("Deleting post with ID:", selectedPostId);
+      axios.delete(`http://localhost:8080/api/v1/posts/${selectedPostId}`)
         .then(() => {
-          setPosts(posts.filter(post => post.id !== id)); // Remove post from state
+          setPosts(posts.filter(post => post.id !== selectedPostId)); // Remove post from state
           setSelectedPost(null)
         })
         .catch(error => {
@@ -36,7 +44,7 @@ const Dashboard = () => {
 
   //update a post
   const updatePost = () => {
-    const updatedPost = { id: selectedPost.id, title: newTitle, author: newAuthor };
+    const updatedPost = { id: selectedPost.id, title: titleRef.current.value, author: authorRef.current.value };
     axios.put(`http://localhost:8080/api/v1/posts/${selectedPost.id}`, updatedPost)
       .then(response => {
         console.log("resp ", response.data)
@@ -47,8 +55,8 @@ const Dashboard = () => {
 
         // reset
         setSelectedPost(null);
-        setNewTitle("");
-        setNewAuthor("");
+        titleRef.current.value = "";
+        authorRef.current.value = "";
         setIsEditing(false);
       })
       .catch(error => console.error("Error updating post:", error));
@@ -56,14 +64,14 @@ const Dashboard = () => {
 
   //add a new post
   const addPost = () => {
-    const newPost = { title: newTitle, author: newAuthor };
+    const newPost = { title: titleRef.current.value, author: authorRef.current.value };
     axios.post('http://localhost:8080/api/v1/posts', newPost)
       .then(response => {
         setPosts([...posts, response.data]);
 
         // Reset form
-        setNewTitle("");
-        setNewAuthor("");
+        titleRef.current.value = "";
+        authorRef.current.value = "";
       })
       .catch(error => console.error("Error adding post:", error));
   }
@@ -79,6 +87,11 @@ const Dashboard = () => {
     }
   };
 
+  const handleSelectPost = (post) => {
+    setSelectedPost(post);  // Set the selected post in the state
+    setSelectedPostId(post.id)
+  };
+
   return (
     <div>
       <h1>Dashboard</h1>
@@ -86,7 +99,7 @@ const Dashboard = () => {
       {/* Post List */}
       <div style={{ display: "flex" }}>
         {posts.map(post => (
-          <Post key={post.id} post={post} onClick={() => setSelectedPost(post)} />
+          <Post key={post.id} post={post} onClick={() => handleSelectPost(post)} />
         ))}
       </div>
 
@@ -100,8 +113,8 @@ const Dashboard = () => {
         <h3>{isEditing ? `Edit Post: ${selectedPost?.id}` : "Add New Post"}</h3>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" value={newTitle} onChange={(event) => setNewTitle(event.target.value)} placeholder='new title' />
-          <input type="text" value={newAuthor} onChange={(event) => setNewAuthor(event.target.value)} placeholder='new author' />
+          <input ref={titleRef} placeholder='New Title' />
+          <input ref={authorRef} placeholder='New Author' />
           <button type="submit">{isEditing ? "Update" : "Add"}</button>
         </form>
       </div>

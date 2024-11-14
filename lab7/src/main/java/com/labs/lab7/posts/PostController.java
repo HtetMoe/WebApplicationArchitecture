@@ -30,14 +30,14 @@ public class PostController {
         return postService.createPost(post);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
-    public void updatePost(@RequestBody Post post, @PathVariable Long id) {
-        postService.updatePost(id, post);
+    public Post updatePost(@RequestBody Post post, @PathVariable Long id) {
+        return postService.updatePost(id, post);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }

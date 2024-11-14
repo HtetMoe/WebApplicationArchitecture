@@ -30,9 +30,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void updatePost(Long id, Post post) {
+    public Post updatePost(Long id, Post post) {
         this.getPost(id);
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Override
