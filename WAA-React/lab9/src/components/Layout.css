@@ -1,0 +1,41 @@
+/* Layout.css */
+
+/* Header Styling */
+header {
+    background-color: #00bcd4;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin: 0 20px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: purple;
+    font-size: 16px;
+  }
+  
+  .nav-link:hover {
+    color: #f1c40f; /* Hover effect */
+  }
+  
+  /* Main Content Styling */
+  main {
+    padding: 20px;
+  }
+  

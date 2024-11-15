@@ -1,43 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
-import Product from './Product/Product';
 import { useState } from 'react';
+import ProductList from './ProductList';
+import ReactHookLifeCycle from './Product/ReactHookLifeCycle';
+import Counter from './Product/Counter';
+import TitleUpdater from './Product/TitleUpdater';
+import ThemeProvider from './Product/ThemeContext';
+import ThemedComponent from './Product/ThemedComponent';
+import Counter1 from './Product/Counter1';
+import Counter2 from './Product/Counter2';
+import ExpensiveComputation from './Product/ExpensiveComputation'
+import UserInput from './Product/UserInput'
+import MeasureDOM from './Product/MeasureDOM'
+import ComposingComponents from './Product/ComposingComponents';
+import RouterDemo from './Routers/RouterDemo';
 
 function App() {
-  const [count, setCount] = useState(0) // useEffect(), useLayoutEffect.
 
-  const countHandler = () => {
-    setCount(count + 1);
-  }
-
-  const [products, setProducts] = useState(
-    [
-      { name : "iPhone 15", price : 900},
-      { name : "iPhone 14", price : 800}
-    ]
-  ) 
-
-  const flag = false
-  useEffect( () => {
-    //your actions
-  }, flag) // every time flag is change, process the code block {}
-
-  const productList = products.map( product => {
-    return(
-      <div>
-        <Product name = {product.name} price = {product.price}/>
-      </div>
-    )
-  })
-
+  const [number, setNumber] = useState(0);
 
   return (
     <div className="App">
-     <Product name = "iPhone 16" price = {1000}/>
-     <Product name = {products[0].name} price = {products[0].price}/>
-      <div>{count}</div>
-       <button onClick={countHandler}>Increase Count</button>
+      {/* <ProductList/> */}
+      {/* <ExampleComponent/> */}
+      {/* <Counter initialCount={0}/> */}
+      {/* <TitleUpdater/> */}
+      {/* <Counter1 /> */}
+      {/* <Counter2/> */}
+
+      {/* <ExpensiveComputation number={number} />
+      <button onClick={() => setNumber(number + 1)}>Increment</button> */}
+
+      {/* <UserInput/> */}
+      {/* <MeasureDOM /> */}
+      {/* <ComposingComponents/> */}
+
+      <RouterDemo/>
+
     </div>
+
+    // <div className='App'>
+    //   <ThemeProvider>
+    //     <ThemedComponent />
+    //   </ThemeProvider>
+    // </div>
+
   );
 }
 

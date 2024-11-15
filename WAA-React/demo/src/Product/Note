@@ -1,0 +1,23 @@
+Examples
+
+=> Check the codes examples in demo project folder
+
+Features   File name (see example here)
+--------   ----------
+useState     - Counter // to keep updated value when re-render
+useEffect    - TitleUpdater // to run the logic base on the dep array
+
+useContext   - ThemedComponent // to pass the value to child directly
+1. create context, 2.then provider, 3.wrap the child component 4. use it
+
+useReducer   - Counter1 // to handle same fun with multiple operations, can pass data as well
+useCallback  - Counter2 //  todo later, to cache the fun, so when re-render, the fun won't create again
+
+
+useMemo      - ExpensiveComputation // for performance, caching the return value of a fun
+useRef       - UserInput //ref.current (dom element) // directly access the actual dom elements
+useLayoutEffect - MeasureDOM // to operate some logic during resizing before seeing in the browser
+
+passProperties - ComposingComponents
+
+
